@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string-array name="countries">
+        <item name="Amman">Amman</item>
+        <item name="Aqaba">Aqaba</item>
+        <item name="Petra">Petra</item>
+        <item name="Madaba">Madaba</item>
+        <item name="Jerash">Jerash</item>
+        <item name="Karak">AlKarak</item>
+        <item name="Tafilah">Tafilah</item>
+        <item name="Ajloun">Ajloun</item>
+        <item name="Irbid">Irbid</item>
+    </string-array>
+    
+</resources>

@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_Clear"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/editclear"
+        />
+    <item
+        android:id="@+id/action_Identify"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/info"
+        />
+    <item
+        android:id="@+id/Buffer"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Buffer"/>
+    <item
+        android:id="@+id/action_GetExtent"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="GetExtent"/>
+    <item
+        android:id="@+id/SelectPolygon"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="QueryTesk Select Polygon"/>
+    
+    <item
+        android:id="@+id/SelectPoint"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="QueryTesk Select Point"/>
+    
+     <item
+        android:id="@+id/openpage"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Next page"/>
+
+</menu>

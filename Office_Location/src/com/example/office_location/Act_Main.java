@@ -37,16 +37,16 @@ public class Act_Main extends ListActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_act__main);
-		targetServerURL = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyBasemap/MapServer";
+		targetServerURL = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer";
 		
-		featureLayer = new ArcGISFeatureLayer(targetServerURL.concat("/42"),MODE.SELECTION);
+		featureLayer = new ArcGISFeatureLayer(targetServerURL.concat("/2"),MODE.SELECTION);
 		//if (featureLayer.isInitialized()) {
 
 	    //	fields = featureLayer.getFields();
 
 	   // } 
 		
-		String targetLayer2 = targetServerURL.concat("/42");
+		String targetLayer2 = targetServerURL.concat("/2");
 		String[] queryParams2 = { targetLayer2, "OBJECTID > 0" };
 		AsyncQueryTask ayncQuery2 = new AsyncQueryTask();
 		ayncQuery2.execute(queryParams2);
@@ -59,8 +59,8 @@ public class Act_Main extends ListActivity implements OnClickListener {
 				EditText tv = (EditText) findViewById(R.id.txt_CompanyName);
 				
 				//CNTYNAME like '%Clark%'
-				String targetLayer2 = targetServerURL.concat("/42");
-				String[] queryParams2 = { targetLayer2, "CNTYNAME like '%" + tv.getText() + "%'" };
+				String targetLayer2 = targetServerURL.concat("/2");
+				String[] queryParams2 = { targetLayer2, "STATE_NAME like '%" + tv.getText() + "%'" };
 				AsyncQueryTask ayncQuery2 = new AsyncQueryTask();
 				ayncQuery2.execute(queryParams2);
 				
@@ -73,8 +73,8 @@ public class Act_Main extends ListActivity implements OnClickListener {
 	
 	FeatureSet featureSet;
 	ProgressDialog progress;
-	ArrayList<String> cityname = new ArrayList<String>();
-	String[] citynames;
+	ArrayList<String> officename = new ArrayList<String>();
+	String[] Officenames;
 	private class AsyncQueryTask extends AsyncTask<String, Void, FeatureSet> {
 
 		protected void onPreExecute() {
@@ -133,19 +133,19 @@ public class Act_Main extends ListActivity implements OnClickListener {
 			    	fields = featureLayer.getFields();
 
 			    } 
-				cityname.clear();
+				officename.clear();
 				
 				for (int i=0;i<cc;i++){
 				
-					row.setField(fields[2]);
-					Object value = featureSet.getGraphics()[i].getAttributeValue(fields[2].getName());
+					row.setField(fields[3]);
+					Object value = featureSet.getGraphics()[i].getAttributeValue(fields[3].getName());
 					row.setValue(value);
-					cityname.add(row.getValue().toString());
+					officename.add(row.getValue().toString());
 				
 				}
 				
-				citynames = new String[cityname.size()]; 
-				citynames = cityname.toArray(citynames);
+				Officenames = new String[officename.size()]; 
+				Officenames = officename.toArray(Officenames);
 				
 				callListAdapter();
 				
@@ -164,7 +164,7 @@ public class Act_Main extends ListActivity implements OnClickListener {
 		
 		setListAdapter(new MyAdapter(this,
 				android.R.layout.simple_list_item_1,R.id.textView1,
-				citynames));
+				Officenames));
 		
 	}
 	
@@ -175,8 +175,8 @@ public class Act_Main extends ListActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		
-		String[] items = new String[cityname.size()]; 
-		items = cityname.toArray(items);
+		String[] items = new String[officename.size()]; 
+		items = officename.toArray(items);
 		
 		Intent intent = new Intent(Act_Main.this, officeaddress.class);
 		intent.putExtra("CompanyName", items[position].toString());
@@ -204,8 +204,8 @@ public class Act_Main extends ListActivity implements OnClickListener {
 			
 			try{
 			
-			String[] items = new String[cityname.size()]; 
-			items = cityname.toArray(items);//getResources().getStringArray(R.array.countries);
+			String[] items = new String[officename.size()]; 
+			items = officename.toArray(items);//getResources().getStringArray(R.array.countries);
 			
 			
 			ImageView iv = (ImageView) row.findViewById(R.id.imageViewListview);

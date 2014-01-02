@@ -25,7 +25,7 @@ public class officeaddress extends Activity {
 	String CompanyName;
 	ProgressDialog progress;
 	GraphicsLayer graphicsLayer;
-	String targetServerURL = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyBasemap/MapServer/";
+	String targetServerURL = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer/";
 	//String targetServerURL = "http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Petroleum/KSPetro/MapServer";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class officeaddress extends Activity {
 		graphicsLayer.setRenderer(sr);
 		mMapView.addLayer(graphicsLayer);
 		
-		String targetLayer = targetServerURL.concat("/42");
-		String[] queryParams = { targetLayer, "CNTYNAME = '"+ CompanyName +"' " };
+		String targetLayer = targetServerURL.concat("/2");
+		String[] queryParams = { targetLayer, "STATE_NAME = '"+ CompanyName +"' " };
 		AsyncQueryTask ayncQuery = new AsyncQueryTask();
 		ayncQuery.execute(queryParams);
 		

@@ -39,14 +39,14 @@ public class Act_Main extends ListActivity implements OnClickListener {
 		setContentView(R.layout.activity_act__main);
 		targetServerURL = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Specialty/ESRI_StateCityHighway_USA/MapServer";
 		
-		featureLayer = new ArcGISFeatureLayer(targetServerURL.concat("/2"),MODE.SELECTION);
+		featureLayer = new ArcGISFeatureLayer(targetServerURL.concat("/1"),MODE.SELECTION);
 		//if (featureLayer.isInitialized()) {
 
 	    //	fields = featureLayer.getFields();
 
 	   // } 
 		
-		String targetLayer2 = targetServerURL.concat("/2");
+		String targetLayer2 = targetServerURL.concat("/1");
 		String[] queryParams2 = { targetLayer2, "OBJECTID > 0" };
 		AsyncQueryTask ayncQuery2 = new AsyncQueryTask();
 		ayncQuery2.execute(queryParams2);
@@ -59,7 +59,7 @@ public class Act_Main extends ListActivity implements OnClickListener {
 				EditText tv = (EditText) findViewById(R.id.txt_CompanyName);
 				
 				//CNTYNAME like '%Clark%'
-				String targetLayer2 = targetServerURL.concat("/2");
+				String targetLayer2 = targetServerURL.concat("/1");
 				String[] queryParams2 = { targetLayer2, "STATE_NAME like '%" + tv.getText() + "%'" };
 				AsyncQueryTask ayncQuery2 = new AsyncQueryTask();
 				ayncQuery2.execute(queryParams2);

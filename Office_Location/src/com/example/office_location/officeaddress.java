@@ -4,6 +4,9 @@ import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
+import com.esri.core.geometry.Envelope;
+import com.esri.core.geometry.Geometry;
+import com.esri.core.geometry.Point;
 import com.esri.core.geometry.SpatialReference;
 import com.esri.core.map.FeatureSet;
 import com.esri.core.map.Graphic;
@@ -47,7 +50,7 @@ public class officeaddress extends Activity {
 		graphicsLayer.setRenderer(sr);
 		mMapView.addLayer(graphicsLayer);
 		
-		String targetLayer = targetServerURL.concat("/2");
+		String targetLayer = targetServerURL.concat("/1");
 		String[] queryParams = { targetLayer, "STATE_NAME = '"+ CompanyName +"' " };
 		AsyncQueryTask ayncQuery = new AsyncQueryTask();
 		ayncQuery.execute(queryParams);
@@ -108,6 +111,9 @@ public class officeaddress extends Activity {
 					
 					
 						graphicsLayer.addGraphics(grs);
+
+						//Envelope EV = graphicsLayer.getFullExtent();
+						//mMapView.zoomTo(EV.getLowerLeft(), 200);// graphicsLayer.getFullExtent();
 						message = (grs.length == 1 ? "1 result has " : Integer
 							.toString(grs.length) + " results have ")
 							+ "come back";
